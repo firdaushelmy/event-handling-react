@@ -1,20 +1,17 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 function App() {
-  const [name, setName] = useState("");
-  const [headerText, setHeaderText] = useState("");
+  const [submitValue, setSubmitValue] = useState('');
+  const [headerText, setHeaderText] = useState('');
   const [isMouseOver, setMouseOver] = useState(false);
 
-  function handleChange(event) {
-    console.log(event.target.value);
-    setName(event.target.value);
+  function changeHandler(event) {
+    setSubmitValue(event.target.value);
   }
 
-  function handleClick() {
-    setHeaderText(name);
-    console.log(name);
+  function clickHandler() {
+    setHeaderText(submitValue);
   }
-
   function handleMouseOver() {
     setMouseOver(true);
   }
@@ -23,16 +20,19 @@ function App() {
     setMouseOver(false);
   }
   return (
-    <div className="container">
+    <div className='container'>
       <h1>Hello {headerText}</h1>
-      <input type="text" placeholder="What's your name?" />
+      <input
+        type='text'
+        placeholder="What's your name?"
+        value={submitValue}
+        onChange={changeHandler}
+      />
       <button
         onMouseOver={handleMouseOver}
         onMouseOut={handleMouseOut}
-        style={{ backgroundColor: isMouseOver ? "black" : "white" }}
-        onChange={handleChange}
-        onClick={handleClick}
-        value={name}
+        style={{ backgroundColor: isMouseOver ? 'black' : 'white' }}
+        onClick={clickHandler}
       >
         Submit
       </button>
